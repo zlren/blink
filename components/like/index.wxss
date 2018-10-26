@@ -1,0 +1,25 @@
+/* components/like/index.wxss */
+.container {
+  display: inline-flex;
+  flex-direction: row;
+  padding: 10rpx;
+}
+
+.container image {
+  width: 32rpx;
+  height: 28rpx;
+}
+
+.container text {
+  /* 这里会覆盖 app.wxss 中为 <page> 定义的全局样式 */
+  font-size: 24rpx;
+  /* 文字本身的高度并不是我们看到的高度，实际上上下会有留白
+  这里设置二者相等，是为了消除留白 */
+  line-height: 24rpx;
+  color: #bbbbbb;
+  position: relative;
+  /* bottom 用来设置竖直方向上元素与所处容器的底部的距离，也就是往上偏移多少 */
+  bottom: 10rpx;
+  /* 往右偏 */
+  left: 6rpx;
+}

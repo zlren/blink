@@ -1,0 +1,11 @@
+{
+  "pages": ["pages/classic/classic"],
+  "window": {
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "旧岛",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "default",
+    "backgroundColor": "#FFFFFF",
+    "enablePullDownRefresh": false
+  }
+}

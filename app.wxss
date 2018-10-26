@@ -1,0 +1,5 @@
+/* page 指的是页面渲染时最外层被包裹的 <page> */
+page {
+  font-family: 'PingFangSC-Thin';
+  font-size: 32rpx;
+}
