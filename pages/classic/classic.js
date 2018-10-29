@@ -11,7 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    classicData: null
+    classicData: null,
+    latest: true, // 默认情况下是最新的期刊，latest 为 true
+    first: false // 不是最老的期刊，first 为 false
   },
 
   /**
@@ -62,8 +64,19 @@ Page({
    */
   onShareAppMessage: function() {},
 
+  /**
+   * 捕捉点赞组件事件
+   */
   onLike: function(event) {
     let behavior = event.detail.behavior;
     likeModel.like(behavior, this.data.classicData.id, this.data.classicData.type);
+  },
+
+  onNext: function(event) {
+    console.log('获取较新一期');
+  },
+
+  onPrevious: function(event) {
+    console.log('获取较旧一期');
   }
 });

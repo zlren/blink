@@ -1,6 +1,9 @@
-<!-- 通过属性传递值给组件的 properties 域，注意是 "{{}}" -->
-<view class="header">
-  <v-episode class="episode" index="{{classicData.index}}" />
-  <v-like class="like" bind:like="onLike" like="{{classicData.like_status}}" count="{{classicData.fav_nums}}" />
+<view class="container">
+  <!-- 通过属性传递值给组件的 properties 域，注意是 "{{}}" -->
+  <view class="header">
+    <v-episode class="episode" index="{{classicData.index}}" />
+    <v-like class="like" bind:like="onLike" like="{{classicData.like_status}}" count="{{classicData.fav_nums}}" />
+  </view>
+  <v-movie imgUrl="{{classicData.image}}" content="{{classicData.content}}" />
+  <v-navi bind:left="onNext" bind:right="onPrevious" class="navi" first="{{first}}" latest="{{latest}}" title="{{classicData.title}}" />
 </view>
-<v-movie imgUrl="{{classicData.image}}" content="{{classicData.content}}" />
