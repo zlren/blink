@@ -24,18 +24,16 @@ class HTTP {
         let code = res.statusCode.toString();
         if (code.startsWith('2')) {
           // 成功响应，返回码为 2xx
-          params.success(res.data);
+          params.success && params.success(res.data);
         } else {
           // 服务器异常：返回码非 2xx
-          wx.showToast({
-            title: '错误',
-            icon: 'none',
-            duration: 1500
-          });
+          let errorCode = res.data.error_code;
+          this._showError(errorCode);
         }
       },
       fail: err => {
         // API 调用失败
+        this._showError(1);
       }
     });
   }

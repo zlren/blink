@@ -1,34 +1,36 @@
 // pages/classic/classic.js
+import { ClassicModel } from '../../models/classic';
+import { LikeModel } from '../../models/like';
 
-import { HTTP } from '../../utils/http.js';
-
-// HTTP 是一个类，不能直接调用其方法，需要先实例化
-let http = new HTTP();
+// ClassicModel 是一个类，不能直接调用其方法，需要先实例化
+let classicModel = new ClassicModel();
+let likeModel = new LikeModel();
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    test: 1
+    classicData: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    http.request({
-      url: 'classic/latest',
-      success: res => {
-        console.log(res);
-      }
-    });
-  },
+  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function() {
+    classicModel.getLatest(res => {
+      // 到这里从后端接口那里拿到了数据
+      // Page 中的 setData，set 完成后可以在 wxml 中获取（从而传递给组件）
+      this.setData({
+        classicData: res
+      });
+    });
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -58,5 +60,10 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function() {},
+
+  onLike: function(event) {
+    let behavior = event.detail.behavior;
+    likeModel.like(behavior, this.data.classicData.id, this.data.classicData.type);
+  }
 });
