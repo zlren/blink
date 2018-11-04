@@ -1,19 +1,16 @@
-// components/classic/music/index.js
+// components/classic/essay/index.js
 import { classicBeh } from '../classic-beh.js';
 Component({
+  // 这里是数组也就意味着一个组件不仅可以继承一个behavior
   behaviors: [classicBeh],
   /**
    * 组件的属性列表
    */
   properties: {},
-
   /**
    * 组件的初始数据
    */
-  data: {
-    waittingUrl: 'images/player@waitting.png',
-    playingUrl: 'images/player@playing.png'
-  },
+  data: {},
 
   /**
    * 组件的方法列表

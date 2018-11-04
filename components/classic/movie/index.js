@@ -1,18 +1,12 @@
 // components/classic/movie/index.js
+import { classicBeh } from '../classic-beh.js';
 Component({
+  behaviors: [classicBeh],
+
   /**
    * 组件的属性列表
    */
-  properties: {
-    // 图片url
-    imgUrl: {
-      type: String
-    },
-    // 文字
-    content: {
-      type: String
-    }
-  },
+  properties: {},
 
   /**
    * 组件的初始数据
