@@ -5,8 +5,8 @@ Component({
    */
   properties: {
     title: String,
-    first: Boolean, // 最早的一期
-    latest: Boolean // 最新（后）的一期
+    first: Boolean, // 是否是最旧的一期
+    latest: Boolean // 是否是最新（后）的一期
   },
 
   /**
@@ -33,6 +33,7 @@ Component({
      */
     onLeft: function(event) {
       if (!this.properties.latest) {
+        // 触发自定义事件
         this.triggerEvent('left', {}, {});
       }
     },

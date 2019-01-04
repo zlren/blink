@@ -1,6 +1,7 @@
 // components/classic/movie/index.js
 import { classicBeh } from '../classic-beh.js';
 Component({
+  // 行为
   behaviors: [classicBeh],
 
   /**

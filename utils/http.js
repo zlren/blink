@@ -12,6 +12,8 @@ class HTTP {
       params.method = 'GET';
     }
 
+    // console.log('url:', config.api_base_url + params.url);
+
     wx.request({
       url: config.api_base_url + params.url,
       method: params.method,

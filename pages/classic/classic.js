@@ -72,11 +72,27 @@ Page({
     likeModel.like(behavior, this.data.classicData.id, this.data.classicData.type);
   },
 
-  onNext: function(event) {
-    console.log('获取较新一期');
+  _updateClassic(nextOrPrevious) {
+    let index = this.data.classicData.index;
+    classicModel.getClassic(index, nextOrPrevious, res => {
+      this.setData({
+        classicData: res,
+        latest: classicModel.isLatest(res.index),
+        first: classicModel.isFirst(res.index)
+      });
+    });
   },
 
+  /**
+   * 获取较旧一期
+   * @param {*} event
+   */
   onPrevious: function(event) {
-    console.log('获取较旧一期');
+    this._updateClassic('previous');
+  },
+
+  // 获取较新一期
+  onNext: function(event) {
+    this._updateClassic('next');
   }
 });
