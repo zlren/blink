@@ -1,4 +1,5 @@
 import { HTTP } from '../utils/http.js';
+import { LikeModel } from './like.js';
 
 class ClassicModel extends HTTP {
   // 获取最新期刊
@@ -22,14 +23,25 @@ class ClassicModel extends HTTP {
     return wx.getStorageSync('latestIndex');
   }
 
+  _getKey(index) {
+    return 'classic_' + index;
+  }
+
   getClassic(index, nextOrPrevious, sCallback) {
-    this.request({
-      // 拼出这个 url
-      url: 'classic/' + index + '/' + nextOrPrevious,
-      success: res => {
-        sCallback(res);
-      }
-    });
+    let key = nextOrPrevious == 'next' ? this._getKey(index + 1) : this._getKey(index - 1);
+    let classic = wx.getStorageSync(key);
+    if (!classic) {
+      this.request({
+        // 拼出这个 url
+        url: `classic/${index}/${nextOrPrevious}`,
+        success: res => {
+          wx.setStorageSync(this._getKey(res.index), res);
+          sCallback(res);
+        }
+      });
+    } else {
+      sCallback(classic);
+    }
   }
 
   // 是否是最旧的一期

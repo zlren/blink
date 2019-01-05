@@ -13,7 +13,9 @@ Page({
   data: {
     classicData: null,
     latest: true, // 默认情况下是最新的期刊，latest 为 true
-    first: false // 不是最老的期刊，first 为 false
+    first: false, // 不是最老的期刊，first 为 false
+    likeCount: 0,
+    likeStatus: false
   },
 
   /**
@@ -29,7 +31,9 @@ Page({
       // 到这里从后端接口那里拿到了数据
       // Page 中的 setData，set 完成后可以在 wxml 中获取（从而传递给组件）
       this.setData({
-        classicData: res
+        classicData: res,
+        likeCount: res.fav_nums,
+        likeStatus: res.like_status
       });
     });
   },
@@ -75,10 +79,20 @@ Page({
   _updateClassic(nextOrPrevious) {
     let index = this.data.classicData.index;
     classicModel.getClassic(index, nextOrPrevious, res => {
+      this._getLikeStatus(res.id, res.type);
       this.setData({
         classicData: res,
         latest: classicModel.isLatest(res.index),
         first: classicModel.isFirst(res.index)
+      });
+    });
+  },
+
+  _getLikeStatus(artId, category) {
+    likeModel.getClassicLikeStatus(artId, category, res => {
+      this.setData({
+        likeCount: res.fav_nums,
+        likeStatus: res.like_status
       });
     });
   },
