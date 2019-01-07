@@ -21,12 +21,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady() {
     classicModel.getLatest(res => {
       // 到这里从后端接口那里拿到了数据
       // Page 中的 setData，set 完成后可以在 wxml 中获取（从而传递给组件）
@@ -41,43 +41,43 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {},
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {},
+  onShareAppMessage() {},
 
   /**
    * 捕捉点赞组件事件
    */
-  onLike: function(event) {
+  onLike(event) {
     let behavior = event.detail.behavior;
     likeModel.like(behavior, this.data.classicData.id, this.data.classicData.type);
   },
 
   _updateClassic(nextOrPrevious) {
-    let index = this.data.classicData.index;
+    const index = this.data.classicData.index;
     classicModel.getClassic(index, nextOrPrevious, res => {
       this._getLikeStatus(res.id, res.type);
       this.setData({
@@ -101,12 +101,12 @@ Page({
    * 获取较旧一期
    * @param {*} event
    */
-  onPrevious: function(event) {
+  onPrevious(event) {
     this._updateClassic('previous');
   },
 
   // 获取较新一期
-  onNext: function(event) {
+  onNext(event) {
     this._updateClassic('next');
   }
 });

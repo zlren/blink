@@ -20,7 +20,7 @@ Component({
     /**
      * 点击桃心
      */
-    onLike: function() {
+    onLike() {
       let like = this.properties.like;
       let count = this.properties.count;
 

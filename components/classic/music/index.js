@@ -10,7 +10,8 @@ Component({
    */
   properties: {
     // 音乐的音频地址
-    src: String
+    src: String,
+    musicTitle: String
   },
 
   /**
@@ -22,11 +23,12 @@ Component({
     playSrc: 'images/player@play.png'
   },
 
-  attached: function() {
+  attached() {
     this._recoverStatus();
+    this._monitorSwitch();
   },
 
-  detached: function(event) {
+  detached(event) {
     console.log('页面消失');
   },
 
@@ -34,13 +36,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onPlay: function() {
+    onPlay() {
       if (!this.data.playing) {
         console.log('播放');
         this.setData({
           playing: true
         });
-        musicManager.title = 'test';
+        musicManager.title = this.properties.musicTitle;
         // 给音乐赋值直接播放
         musicManager.src = this.properties.src;
       } else {
@@ -51,7 +53,10 @@ Component({
         musicManager.pause();
       }
     },
-    _recoverStatus: function() {
+
+    // 监测当前播放的音乐是不是这个卡片的音乐
+    // 设置初始图标
+    _recoverStatus() {
       if (musicManager.paused) {
         this.setData({
           playing: false
@@ -61,6 +66,21 @@ Component({
           playing: true
         });
       }
+    },
+
+    _monitorSwitch() {
+      musicManager.onPlay(() => {
+        this._recoverStatus();
+      });
+      musicManager.onPause(() => {
+        this._recoverStatus();
+      });
+      musicManager.onStop(() => {
+        this._recoverStatus();
+      });
+      musicManager.onEnded(() => {
+        this._recoverStatus();
+      });
     }
   }
 });

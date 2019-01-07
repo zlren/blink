@@ -19,7 +19,7 @@ Component({
     rightSrc: 'images/triangle@right.png'
   },
 
-  attached: function() {
+  attached() {
     // console.log(this.properties.first);
     // console.log(this.properties.latest);
   },
@@ -31,7 +31,7 @@ Component({
     /**
      * 较新一期
      */
-    onLeft: function(event) {
+    onLeft(event) {
       if (!this.properties.latest) {
         // 触发自定义事件
         this.triggerEvent('left', {}, {});
@@ -41,7 +41,7 @@ Component({
     /**
      * 较老一期
      */
-    onRight: function(event) {
+    onRight(event) {
       if (!this.properties.first) {
         this.triggerEvent('right', {}, {});
       }

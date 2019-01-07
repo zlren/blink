@@ -6,7 +6,7 @@ Component({
   properties: {
     index: {
       type: String,
-      observer: function(newVal, oldValue, changePath) {
+      observer(newVal, oldValue, changePath) {
         let val = newVal < 10 ? '0' + newVal : newVal;
         this.setData({
           _index: val
@@ -25,7 +25,7 @@ Component({
     _index: ''
   },
 
-  attached: function() {
+  attached() {
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth();
