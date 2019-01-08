@@ -1,14 +1,28 @@
 // pages/book/book.js
+
+import { BookModel } from '../../models/book.js';
+
+const bookModel = new BookModel();
+
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    books: []
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    const hostListPro = bookModel.getHotList();
+    hostListPro.then(res => {
+      this.setData({
+        books: res
+      });
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
