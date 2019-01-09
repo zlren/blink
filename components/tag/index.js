@@ -23,5 +23,12 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {}
+  methods: {
+    onTap(event) {
+      // 标签被点击，把标签内容传递出去
+      this.triggerEvent('tapping', {
+        text: this.properties.text
+      });
+    }
+  }
 });
