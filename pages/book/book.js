@@ -1,6 +1,7 @@
 // pages/book/book.js
 
 import { BookModel } from '../../models/book.js';
+import { random } from '../../utils/common.js';
 
 const bookModel = new BookModel();
 
@@ -10,7 +11,8 @@ Page({
    */
   data: {
     books: [],
-    searching: false
+    searching: false,
+    more: ''
   },
 
   /**
@@ -66,5 +68,12 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {}
+  onShareAppMessage() {},
+
+  // page才有这个方法，通过传递properties属性的方式通知给search组件
+  onReachBottom() {
+    this.setData({
+      more: random(16)
+    });
+  }
 });

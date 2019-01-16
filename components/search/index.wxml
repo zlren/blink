@@ -16,7 +16,7 @@
         <text>历史搜索</text>
       </view>
       <view class="tags">
-        <block wx:for="{{historyWords}}">
+        <block wx:for="{{historyWords}}" wx:key="">
           <v-tag text="{{item}}" bind:tapping="onConfirm" />
         </block>
       </view>
@@ -27,7 +27,7 @@
         <text>热门搜索</text>
       </view>
       <view class="tags">
-        <block wx:for="{{hotWords}}">
+        <block wx:for="{{hotWords}}" wx:key="">
           <v-tag text="{{item}}" bind:tapping="onConfirm" />
         </block>
       </view>
@@ -38,4 +38,7 @@
       <v-book book="{{item}}" class="book" />
     </block>
   </view>
+  <v-loading class="loading-center" wx:if="{{loadingCenter}}" />
+  <v-loading class="loading" wx:if="{{loading}}" />
+  <text class="empty-tip" wx:if="{{noneResult}}">没有搜索到书籍</text>
 </view>
